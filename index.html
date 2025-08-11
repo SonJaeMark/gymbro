@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymBro - Transform Your Body</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        /* Design System - CSS Variables */
+        :root {
+            /* Colors */
+            --primary-red: #ef4444;
+            --primary-red-hover: #dc2626;
+            --primary-red-light: #fca5a5;
+            
+            /* Dark Theme */
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-tertiary: #374151;
+            --text-primary: #ffffff;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --border-color: #4b5563;
+            --shadow: rgba(0, 0, 0, 0.3);
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+            
+            /* Typography */
+            --font-family: 'Inter', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #e2e8f0;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --border-color: #d1d5db;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+        
+        /* Typography System */
+        .text-xs { font-size: var(--font-size-xs); }
+        .text-sm { font-size: var(--font-size-sm); }
+        .text-base { font-size: var(--font-size-base); }
+        .text-lg { font-size: var(--font-size-lg); }
+        .text-xl { font-size: var(--font-size-xl); }
+        .text-2xl { font-size: var(--font-size-2xl); }
+        .text-3xl { font-size: var(--font-size-3xl); }
+        .text-4xl { font-size: var(--font-size-4xl); }
+        .text-5xl { font-size: var(--font-size-5xl); }
+        .text-6xl { font-size: var(--font-size-6xl); }
+        
+        .font-light { font-weight: 300; }
+        .font-normal { font-weight: 400; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .font-extrabold { font-weight: 800; }
+        
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+        .text-red { color: var(--primary-red); }
+        
+        /* Layout System */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .container-lg {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .grid {
+            display: grid;
+        }
+        
+        .grid-1 { grid-template-columns: 1fr; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        
+        .gap-sm { gap: var(--space-sm); }
+        .gap-md { gap: var(--space-md); }
+        .gap-lg { gap: var(--space-lg); }
+        .gap-xl { gap: var(--space-xl); }
+        .gap-2xl { gap: var(--space-2xl); }
+        
+        /* Spacing System */
+        .p-xs { padding: var(--space-xs); }
+        .p-sm { padding: var(--space-sm); }
+        .p-md { padding: var(--space-md); }
+        .p-lg { padding: var(--space-lg); }
+        .p-xl { padding: var(--space-xl); }
+        .p-2xl { padding: var(--space-2xl); }
+        .p-3xl { padding: var(--space-3xl); }
+        .p-4xl { padding: var(--space-4xl); }
+        
+        .py-xs { padding-top: var(--space-xs); padding-bottom: var(--space-xs); }
+        .py-sm { padding-top: var(--space-sm); padding-bottom: var(--space-sm); }
+        .py-md { padding-top: var(--space-md); padding-bottom: var(--space-md); }
+        .py-lg { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+        .py-xl { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+        .py-2xl { padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); }
+        .py-3xl { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+        .py-4xl { padding-top: var(--space-4xl); padding-bottom: var(--space-4xl); }
+        
+        .px-xs { padding-left: var(--space-xs); padding-right: var(--space-xs); }
+        .px-sm { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+        .px-md { padding-left: var(--space-md); padding-right: var(--space-md); }
+        .px-lg { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+        .px-xl { padding-left: var(--space-xl); padding-right: var(--space-xl); }
+        .px-2xl { padding-left: var(--space-2xl); padding-right: var(--space-2xl); }
+        
+        .m-xs { margin: var(--space-xs); }
+        .m-sm { margin: var(--space-sm); }
+        .m-md { margin: var(--space-md); }
+        .m-lg { margin: var(--space-lg); }
+        .m-xl { margin: var(--space-xl); }
+        .m-2xl { margin: var(--space-2xl); }
+        
+        .mb-xs { margin-bottom: var(--space-xs); }
+        .mb-sm { margin-bottom: var(--space-sm); }
+        .mb-md { margin-bottom: var(--space-md); }
+        .mb-lg { margin-bottom: var(--space-lg); }
+        .mb-xl { margin-bottom: var(--space-xl); }
+        .mb-2xl { margin-bottom: var(--space-2xl); }
+        .mb-3xl { margin-bottom: var(--space-3xl); }
+        .mb-4xl { margin-bottom: var(--space-4xl); }
+        
+        .mt-xs { margin-top: var(--space-xs); }
+        .mt-sm { margin-top: var(--space-sm); }
+        .mt-md { margin-top: var(--space-md); }
+        .mt-lg { margin-top: var(--space-lg); }
+        .mt-xl { margin-top: var(--space-xl); }
+        .mt-2xl { margin-top: var(--space-2xl); }
+        
+        /* Component System */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md) var(--space-xl);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            min-height: 48px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary-red);
+            background-color: var(--primary-red);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--primary-red);
+            background-color: var(--primary-red);
+            color: white;
+        }
+        
+        .btn-lg {
+            padding: var(--space-lg) var(--space-2xl);
+            font-size: var(--font-size-lg);
+            min-height: 56px;
+        }
+        
+        .btn-full {
+            width: 100%;
+        }
+        
+        /* Card System */
+        .card {
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: all var(--transition-normal);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        
+        .card-bordered {
+            border: 2px solid var(--border-color);
+        }
+        
+        .card-highlight {
+            border: 2px solid var(--primary-red);
+            position: relative;
+        }
+        
+        /* Form System */
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: var(--space-md);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+            transition: all var(--transition-normal);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--bg-secondary);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: background-color var(--transition-normal);
+        }
+        
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .navbar-brand {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-red);
+            text-decoration: none;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            list-style: none;
+        }
+        
+        .navbar-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            transition: color var(--transition-normal);
+        }
+        
+        .navbar-link:hover {
+            color: var(--primary-red);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+        }
+        
+        .mobile-menu {
+            display: none;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-nav {
+            padding: var(--space-md);
+        }
+        
+        .mobile-nav a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-sm);
+            transition: color var(--transition-normal);
+        }
+        
+        .mobile-nav a:hover {
+            color: var(--primary-red);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 64px;
+            transition: background var(--transition-normal);
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-4xl) var(--space-4xl);
+        }
+        
+        .hero-text h1 {
+            font-size: var(--font-size-6xl);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .hero-text p {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: var(--space-4xl) 0;
+        }
+        
+        .section-alt {
+            background-color: var(--bg-secondary);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-4xl);
+        }
+        
+        .section-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+        
+        .section-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+        }
+        
+        /* Trainer Cards */
+        .trainer-avatar {
+            width: 96px;
+            height: 96px;
+            background-color: var(--primary-red);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-4xl);
+            margin: 0 auto var(--space-md);
+        }
+        
+        .trainer-name {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .trainer-role {
+            color: var(--primary-red);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        .trainer-bio {
+            color: var(--text-muted);
+            margin-bottom: var(--space-md);
+        }
+        
+        .trainer-tags {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Pricing */
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-red);
+            color: white;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .price-period {
+            font-size: var(--font-size-lg);
+            color: var(--text-muted);
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+        }
+        
+        .feature-check {
+            color: var(--primary-red);
+            margin-right: var(--space-sm);
+            font-weight: 700;
+        }
+        
+        /* Contact */
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-red);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--space-md);
+            font-size: var(--font-size-2xl);
+        }
+        
+        .contact-details h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .contact-details p {
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: var(--space-3xl) 0 var(--space-2xl);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .footer-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-tertiary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background-color var(--transition-normal);
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-red);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: var(--space-2xl);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+            padding: var(--space-sm);
+            border-radius: var(--radius-md);
+            transition: color var(--transition-normal);
+        }
+        
+        .theme-toggle:hover {
+            color: var(--primary-red);
+        }
+        
+        /* Animations */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Logo in navbar and footer */
+        .logo-img {
+          height: 60px;
+          vertical-align: middle;
+        }
+        
+        .footer-logo-img {
+          height: 70px;
+          vertical-align: middle;
+        }
+        
+        /* Program card images */
+        .program-img {
+          width: 100%;
+          max-width: 200px;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 1rem;
+          margin-bottom: 1rem;
+        }
+        
+        /* Trainer avatar images */
+        .trainer-avatar-img {
+          width: 96px;
+          height: 96px;
+          object-fit: cover;
+          border-radius: 50%;
+          border: 3px solid #ef4444;
+          display: block;
+          margin: 0 auto;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Alert */
+        .alert {
+            padding: var(--space-md);
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-lg);
+        }
+        
+        .alert-warning {
+            background-color: #fbbf24;
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xl);
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: var(--font-size-4xl);
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-xl);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .section-title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <!-- Navbar Brand -->
+            <a href="#home" class="navbar-brand">
+              <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/gymbro-logo-2.png" alt="GymBro Logo" class="logo-img" />
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="#home" class="navbar-link">Home</a></li>
+                <li><a href="#programs" class="navbar-link">Programs</a></li>
+                <li><a href="#trainers" class="navbar-link">Trainers</a></li>
+                <li><a href="#membership" class="navbar-link">Membership</a></li>
+                <li><button id="theme-toggle" class="theme-toggle"><span id="theme-icon">☀️</span></button></li>
+                <li><a href="#contact" class="btn btn-primary">Join Now</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <nav class="mobile-nav">
+                <a href="#home">Home</a>
+                <a href="#programs">Programs</a>
+                <a href="#trainers">Trainers</a>
+                <a href="#membership">Membership</a>
+                <button id="theme-toggle-mobile" class="theme-toggle"><span id="theme-icon-mobile">☀️</span> Light Mode</button>
+                <a href="#contact" class="btn btn-primary btn-full mt-md">Join Now</a>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Transform Your <span class="text-red">Body</span><br>Transform Your <span class="text-red">Life</span></h1>
+                <p>Join GymBro and unlock your potential with state-of-the-art equipment, expert trainers, and a community that pushes you to be your best.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-lg">Start Your Journey</button>
+                    <button class="btn btn-outline btn-lg">Watch Video</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+              <img src="https://uploads.onecompiler.io/43s6xt6ew/43s6xutvx/hero-model.png" alt="Gym Hero Visual" width="600" height="auto" style="border-radius: 2rem; max-width: 100%; height: auto;" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="section section-alt">
+        <div class="container-lg">
+            <div class="section-header">
+                <h2 class="section-title">Our <span class="text-red">Programs</span></h2>
+                <p class="section-subtitle">Choose the perfect program to reach your fitness goals</p>
+            </div>
+            <div class="grid grid-3 gap-xl">
+                <div class="card card-hover">
+                  <div class="text-center mb-lg">
+                      <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(1).jpg" alt="Strength Training" class="program-img" />
+                      <h3 class="text-2xl font-bold mb-sm">Strength Training</h3>
+                      <p class="text-muted">Build muscle and increase power with our comprehensive strength programs</p>
+                  </div>
+                  <ul class="feature-list">
+                      <li class="feature-item">
+                          <span class="feature-check">✓</span>
+                          Free weights & machines
+                      </li>
+                      <li class="feature-item">
+                          <span class="feature-check">✓</span>
+                          Progressive overload
+                      </li>
+                      <li class="feature-item">
+                          <span class="feature-check">✓</span>
+                          Expert guidance
+                      </li>
+                  </ul>
+                  <button class="btn btn-primary btn-full">Learn More</button>
+                </div>
+
+                <div class="card card-hover">
+                    <div class="text-center mb-lg">
+                      <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/%F0%9F%92%83%F0%9F%8F%BD%F0%9F%94%A5%20SWEAT,%20SMILE,%20REPEAT!%20Effective%20Workout%20Cardio%20for%20Women%20to%20Get%20Fit,%20and%20Feel%20Empowered.jpg" alt="Cardio Fitness" class="program-img" />
+                        <h3 class="text-2xl font-bold mb-sm">Cardio Fitness</h3>
+                        <p class="text-muted">Improve endurance and burn calories with dynamic cardio workouts</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            HIIT training
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Treadmills & bikes
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Group classes
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary btn-full">Learn More</button>
+                </div>
+
+                <div class="card card-hover">
+                    <div class="text-center mb-lg">
+                        <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(2).jpg" alt="Yoga & Flexibility" class="program-img" />
+                        <h3 class="text-2xl font-bold mb-sm">Yoga & Flexibility</h3>
+                        <p class="text-muted">Enhance flexibility, balance, and mental wellness through yoga</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Multiple yoga styles
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Meditation sessions
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Stress relief
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary btn-full">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="section">
+        <div class="container-lg">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our <span class="text-red">Trainers</span></h2>
+                <p class="section-subtitle">Expert coaches dedicated to your success</p>
+            </div>
+            <div class="grid grid-3 gap-xl">
+                <div class="card card-hover text-center">
+                  <div class="trainer-avatar" style="padding: 0; background: none;">
+                    <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(3).jpg" alt="Mike Johnson" class="trainer-avatar-img" />
+                  </div>
+                  <h3 class="trainer-name">Mike Johnson</h3>
+                  <p class="trainer-role">Strength Coach</p>
+                  <p class="trainer-bio">10+ years experience in powerlifting and strength training</p>
+                  <div class="trainer-tags">
+                    <span class="tag">Powerlifting</span>
+                    <span class="tag">Nutrition</span>
+                  </div>
+                </div>
+
+                <div class="card card-hover text-center">
+                    <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/Download%20premium%20image%20of%20Female%20boxer%20putting%20a%20strap%20on%20her%20hand%20by%20Teddy%20about%20hand,%20person,%20sports,%20adult,%20and%20woman%201222505.jpg" alt="Sarah Davis" class="trainer-avatar-img" />
+                    <h3 class="trainer-name">Sarah Davis</h3>
+                    <p class="trainer-role">Cardio Specialist</p>
+                    <p class="trainer-bio">Certified in HIIT, spinning, and endurance training</p>
+                    <div class="trainer-tags">
+                        <span class="tag">HIIT</span>
+                        <span class="tag">Spinning</span>
+                    </div>
+                </div>
+
+                <div class="card card-hover text-center">
+                    <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(4).jpg" alt="Emma Wilson" class="trainer-avatar-img" />
+                    <h3 class="trainer-name">Emma Wilson</h3>
+                    <p class="trainer-role">Yoga Instructor</p>
+                    <p class="trainer-bio">200-hour certified yoga instructor specializing in Vinyasa</p>
+                    <div class="trainer-tags">
+                        <span class="tag">Vinyasa</span>
+                        <span class="tag">Meditation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="section section-alt">
+        <div class="container-lg">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your <span class="text-red">Membership</span></h2>
+                <p class="section-subtitle">Flexible plans to fit your lifestyle and budget</p>
+            </div>
+            <div class="grid grid-3 gap-xl">
+                <div class="card card-hover">
+                    <div class="text-center mb-lg">
+                        <h3 class="text-2xl font-bold mb-sm">Basic</h3>
+                        <div class="price">$29<span class="price-period">/month</span></div>
+                        <p class="text-muted">Perfect for getting started</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Gym access (6am-10pm)
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Basic equipment
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Locker room access
+                        </li>
+                    </ul>
+                    <button class="btn btn-secondary btn-full">Choose Plan</button>
+                </div>
+
+                <div class="card card-hover card-highlight">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="text-center mb-lg">
+                        <h3 class="text-2xl font-bold mb-sm">Premium</h3>
+                        <div class="price">$59<span class="price-period">/month</span></div>
+                        <p class="text-muted">Everything you need to succeed</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            24/7 gym access
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            All equipment & classes
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Personal trainer session
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Nutrition consultation
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary btn-full">Choose Plan</button>
+                </div>
+
+                <div class="card card-hover">
+                    <div class="text-center mb-lg">
+                        <h3 class="text-2xl font-bold mb-sm">Elite</h3>
+                        <div class="price">$99<span class="price-period">/month</span></div>
+                        <p class="text-muted">Ultimate fitness experience</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Everything in Premium
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Unlimited personal training
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            Massage therapy
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-check">✓</span>
+                            VIP locker room
+                        </li>
+                    </ul>
+                    <button class="btn btn-secondary btn-full">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container-lg">
+            <div class="section-header">
+                <h2 class="section-title">Get In <span class="text-red">Touch</span></h2>
+                <p class="section-subtitle">Ready to start your fitness journey? Contact us today!</p>
+            </div>
+            <div class="grid grid-2 gap-3xl">
+                <div>
+                    <div class="contact-info">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>123 Fitness Street, Gym City, GC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h3>Hours</h3>
+                            <p>Mon-Fri: 5AM-11PM<br>Sat-Sun: 6AM-10PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input form-textarea" placeholder="Tell us about your fitness goals..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                    <div class="alert alert-warning">
+                        <p><strong>📧 Demo Form:</strong> This is a sample contact form for demonstration purposes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-lg">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <!-- Footer Brand -->
+                    <div class="navbar-brand mb-md">
+                      <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/gymbro-logo-2.png" alt="GymBro Logo" class="footer-logo-img" />
+                    </div>
+                    <p class="text-muted">Transform your body, transform your life. Join the GymBro community today.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#trainers">Trainers</a></li>
+                        <li><a href="#membership">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Strength Training</a></li>
+                        <li><a href="#">Cardio Fitness</a></li>
+                        <li><a href="#">Yoga Classes</a></li>
+                        <li><a href="#">Personal Training</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GymBro. All rights reserved. Transform your body, transform your life.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = document.getElementById('theme-icon-mobile');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        function setTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            
+            if (theme === 'light') {
+                themeIcon.textContent = '🌙';
+                themeIconMobile.textContent = '🌙';
+                themeToggleMobile.innerHTML = '<span id="theme-icon-mobile">🌙</span> Dark Mode';
+            } else {
+                themeIcon.textContent = '☀️';
+                themeIconMobile.textContent = '☀️';
+                themeToggleMobile.innerHTML = '<span id="theme-icon-mobile">☀️</span> Light Mode';
+            }
+            localStorage.setItem('theme', theme);
+        }
+        
+        // Set initial theme
+        setTheme(currentTheme);
+        
+        // Theme toggle event listeners
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+        
+        themeToggleMobile.addEventListener('click', () => {
+            const newTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for your interest! This is a demo form. In a real website, this would send your message to the gym.');
+        });
+
+        // Button click handlers
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Learn More') || 
+                button.textContent.includes('Choose Plan') || 
+                button.textContent.includes('Start Your Journey') ||
+                button.textContent.includes('Watch Video') ||
+                button.textContent.includes('Join Now')) {
+                button.addEventListener('click', function() {
+                    alert('Welcome to GymBro! In a real website, this would take you to the ' + this.textContent + ' page.');
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d447ae13b2bc45',t:'MTc1NDg3OTEwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
