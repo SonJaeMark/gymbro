@@ -346,7 +346,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 64px;
+            height: var(--space-4xl);
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 var(--space-md);
@@ -421,7 +421,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 64px;
+            padding-top: 128px;
             transition: background var(--transition-normal);
         }
         
@@ -495,6 +495,8 @@
             justify-content: center;
             font-size: var(--font-size-4xl);
             margin: 0 auto var(--space-md);
+            padding: 0; 
+            background: none;
         }
         
         .trainer-name {
@@ -690,7 +692,7 @@
         
         /* Logo in navbar and footer */
         .logo-img {
-          height: 60px;
+          height: 80px;
           vertical-align: middle;
         }
         
@@ -718,6 +720,14 @@
           border: 3px solid #ef4444;
           display: block;
           margin: 0 auto;
+        }
+
+        .hero-img {
+            width: 600px;
+            height: auto;
+            border-radius: 2rem;
+            max-width: 100%;
+            height: auto;
         }
         
         @keyframes pulse {
@@ -752,6 +762,7 @@
                 grid-template-columns: 1fr;
                 gap: var(--space-2xl);
                 text-align: center;
+                padding: var(--space-md);
             }
             
             .hero-text h1 {
@@ -833,7 +844,7 @@
                 </div>
             </div>
             <div class="hero-visual">
-              <img src="https://uploads.onecompiler.io/43s6xt6ew/43s6xutvx/hero-model.png" alt="Gym Hero Visual" width="600" height="auto" style="border-radius: 2rem; max-width: 100%; height: auto;" />
+              <img src="https://uploads.onecompiler.io/43s6xt6ew/43s6xutvx/hero-model.png" class="hero-img" alt="Gym Hero Visual" />
             </div>
         </div>
     </section>
@@ -927,12 +938,12 @@
             </div>
             <div class="grid grid-3 gap-xl">
                 <div class="card card-hover text-center">
-                  <div class="trainer-avatar" style="padding: 0; background: none;">
-                    <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(3).jpg" alt="Mike Johnson" class="trainer-avatar-img" />
-                  </div>
-                  <h3 class="trainer-name">Mike Johnson</h3>
-                  <p class="trainer-role">Strength Coach</p>
-                  <p class="trainer-bio">10+ years experience in powerlifting and strength training</p>
+                    <div class="trainer-avatar">
+                        <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(3).jpg" alt="Mike Johnson" class="trainer-avatar-img" />
+                    </div>
+                    <h3 class="trainer-name">Mike Johnson</h3>
+                    <p class="trainer-role">Strength Coach</p>
+                    <p class="trainer-bio">10+ years experience in powerlifting and strength training</p>
                   <div class="trainer-tags">
                     <span class="tag">Powerlifting</span>
                     <span class="tag">Nutrition</span>
@@ -940,7 +951,9 @@
                 </div>
 
                 <div class="card card-hover text-center">
-                    <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/Download%20premium%20image%20of%20Female%20boxer%20putting%20a%20strap%20on%20her%20hand%20by%20Teddy%20about%20hand,%20person,%20sports,%20adult,%20and%20woman%201222505.jpg" alt="Sarah Davis" class="trainer-avatar-img" />
+                    <div class="trainer-avatar">
+                        <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/Download%20premium%20image%20of%20Female%20boxer%20putting%20a%20strap%20on%20her%20hand%20by%20Teddy%20about%20hand,%20person,%20sports,%20adult,%20and%20woman%201222505.jpg" alt="Sarah Davis" class="trainer-avatar-img" />
+                    </div>
                     <h3 class="trainer-name">Sarah Davis</h3>
                     <p class="trainer-role">Cardio Specialist</p>
                     <p class="trainer-bio">Certified in HIIT, spinning, and endurance training</p>
@@ -951,7 +964,9 @@
                 </div>
 
                 <div class="card card-hover text-center">
-                    <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(4).jpg" alt="Emma Wilson" class="trainer-avatar-img" />
+                    <div class="trainer-avatar">
+                        <img src="https://uploads.onecompiler.io/43s6xt6ew/43tbx3jza/download%20(4).jpg" alt="Emma Wilson" class="trainer-avatar-img" />
+                    </div>
                     <h3 class="trainer-name">Emma Wilson</h3>
                     <p class="trainer-role">Yoga Instructor</p>
                     <p class="trainer-bio">200-hour certified yoga instructor specializing in Vinyasa</p>
