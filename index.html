@@ -217,7 +217,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: var(--space-md) var(--space-xl);
+            padding: var(--space-sm) var(--space-lg);
             border: none;
             border-radius: var(--radius-lg);
             font-size: var(--font-size-base);
@@ -421,31 +421,31 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 128px;
+            /* padding-top: 32px; */
             transition: background var(--transition-normal);
         }
         
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-3xl);
+            gap: var(--space-md);
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            padding: var(--space-4xl) var(--space-4xl);
+            padding: var(--space-4xl) var(--space-3xl);
         }
         
         .hero-text h1 {
             font-size: var(--font-size-6xl);
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-md);
         }
         
         .hero-text p {
             font-size: var(--font-size-xl);
             color: var(--text-secondary);
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-sm);
         }
         
         .hero-buttons {
@@ -750,6 +750,9 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero{
+                padding-top: 128px;
+            }
             .navbar-nav {
                 display: none;
             }
@@ -837,9 +840,9 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Transform Your <span class="text-red">Body</span><br>Transform Your <span class="text-red">Life</span></h1>
-                <p>Join GymBro and unlock your potential with state-of-the-art equipment, expert trainers, and a community that pushes you to be your best.</p>
+                <p class="mb-sm">Join GymBro and unlock your potential with state-of-the-art equipment, expert trainers, and a community that pushes you to be your best.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary btn-lg">Start Your Journey</button>
+                    <button class="btn btn-primary btn-lg">Start Now</button>
                     <button class="btn btn-outline btn-lg">Watch Video</button>
                 </div>
             </div>
